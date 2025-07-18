@@ -1,0 +1,83 @@
+.team-chart-container {
+  width: 460px;
+  height: 257px;
+  background: #fcfcfe;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px 0 rgba(16, 30, 54, 0.04);
+  padding: 24px 20px 16px 20px;
+  box-sizing: border-box;
+}
+
+.team-chart-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #181a20;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-icon {
+  font-size: 16px;
+  color: #181a20;
+  cursor: pointer;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+}
+
+.percent-label {
+  position: absolute;
+  right: 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  top: 0;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+.percent-1 {
+  top: 28px;
+  color: #3b5bdb;
+  background: #e6edff;
+  border-radius: 18px;
+  padding: 0 16px;
+  width: 350px;
+  text-align: center;
+  left: 10px;
+}
+.percent-2 {
+  top: 75px;
+  color: #fff;
+  background: #0047ff;
+  border-radius: 18px;
+  padding: 0 16px;
+  width: 60px;
+  text-align: center;
+  left: 320px;
+}
+
+.y-label {
+  position: absolute;
+  left: 0;
+  font-size: 13px;
+  color: #181a20;
+  font-weight: 400;
+  pointer-events: none;
+  width: 320px;
+  text-align: left;
+}
+.y-label-1 {
+  top: 18px;
+}
+.y-label-2 {
+  top: 75px;
+}
+  

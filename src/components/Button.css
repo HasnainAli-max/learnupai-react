@@ -1,0 +1,166 @@
+.button-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .export-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+  
+  .refresh-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #0047ff;
+    border: none;
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: sans-serif;
+  }
+  
+  .down-icon,
+  .refresh-icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @media (max-width:500px) {
+    .button-container {
+       
+        gap: 5px;
+      
+      }
+      
+      .export-button {
+        gap: 4px;
+        padding: 5px 8px;
+        font-size: 14px;
+        border-radius: 3px;
+      }
+      .refresh-button {
+        gap: 4px;
+        padding: 5px 8px;
+        font-size: 14px;
+        border-radius: 3px;
+      }
+
+  }
+
+
+  .button-container {
+    display: flex;
+    gap: 10px;
+    position: relative;
+  }
+  
+  /* Export Button */
+  .export-button {
+    border: 1px solid #000;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  /* Refresh Button */
+  .refresh-button {
+    background-color: #0047ff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  /* Popup */
+  .popup {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    background: white;
+    border: 1px solid #000;
+    border-radius: 6px;
+    padding: 12px;
+    min-width: 160px;
+    z-index: 10;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Format selection */
+  .popup-title {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  
+  .format-options {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .format-button {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    background: #f1f1f1;
+    color: #333;
+    border-radius: 4px;
+  }
+  
+  .format-button.selected {
+    background: #333;
+    color: white;
+  }
+  
+  /* Export button inside popup */
+  .popup-export {
+    width: 100%;
+    padding: 8px;
+    background: #0047ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .close-btn {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #000;
+  }
+  
+  
+  
