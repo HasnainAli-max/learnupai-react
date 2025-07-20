@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #f9f9fa;
+    background: none;
     padding: 12px 20px;
     border-bottom: 1px solid #e0e0e0;
     font-family: sans-serif;
@@ -166,3 +166,50 @@
     }
     
   }
+  @media (max-width:470px) {
+    .navbar{
+      margin-right: -10px;
+
+    }
+  }
+  @media (max-width:450px) {
+    .navbar{
+      margin-right: -30px;
+
+    }
+  } @media (max-width:430px) {
+    .navbar{
+      margin-right: -50px;
+
+    }
+  } @media (max-width:410px) {
+    .navbar{
+      margin-right: -50px;
+
+    }
+  }
+  @media (max-width:390px) {
+    .navbar{
+      margin-right: -80px;
+
+    }
+  }
+  /* @media (max-width:370px) {
+    .navbar{
+      margin-right: -110px;
+
+    }
+  }
+  @media (max-width:410px) {
+    .navbar{
+      margin-right: -130px;
+
+    }
+  }
+  @media (max-width:410px) {
+    .navbar{
+      margin-right: -150px;
+
+    }
+  } */
+  

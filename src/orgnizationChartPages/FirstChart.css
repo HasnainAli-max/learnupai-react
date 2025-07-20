@@ -1,11 +1,13 @@
 .team-chart-container {
-  width: 460px;
+  width: 100%;
+  max-width: 470px;
   height: 257px;
-  background: #fcfcfe;
   border-radius: 12px;
-  box-shadow: 0 1px 4px 0 rgba(16, 30, 54, 0.04);
   padding: 24px 20px 16px 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 }
 
 .team-chart-title {
@@ -28,40 +30,7 @@
   position: relative;
   width: 100%;
   height: 160px;
-}
-
-.percent-label {
-  position: absolute;
-  right: 32px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #fff;
-  top: 0;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  z-index: 2;
-  pointer-events: none;
-}
-.percent-1 {
-  top: 28px;
-  color: #3b5bdb;
-  background: #e6edff;
-  border-radius: 18px;
-  padding: 0 16px;
-  width: 350px;
-  text-align: center;
-  left: 10px;
-}
-.percent-2 {
-  top: 75px;
-  color: #fff;
-  background: #0047ff;
-  border-radius: 18px;
-  padding: 0 16px;
-  width: 60px;
-  text-align: center;
-  left: 320px;
+  border: none;
 }
 
 .y-label {
@@ -75,9 +44,55 @@
   text-align: left;
 }
 .y-label-1 {
-  top: 18px;
+  top: 0px;
+  left: 20px;
 }
 .y-label-2 {
-  top: 75px;
+  top: 80px;
+  left: 20px;
 }
-  
+
+/* Tablet */
+@media (max-width: 550px) {
+  .team-chart-container {
+    max-width: 400px;
+    height: auto;
+    /* padding: 16px; */
+  }
+
+  .chart-wrapper {
+    height: 140px;
+  }
+
+  .y-label {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .y-label-1 {
+    top: -5px;
+  }
+
+  .y-label-2 {
+    top: 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 490px) {
+  .team-chart-container {
+    max-width: 315px;
+  }
+
+  .chart-wrapper {
+    height: 150px;
+  }
+  .y-label-1 {
+    left: 5px;
+    top: 5px;
+  }
+  .y-label-2 {
+    left: 5px;
+    top: 78px;
+  }
+}

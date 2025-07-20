@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const menuItems = [
@@ -68,26 +68,62 @@ const menuItems = [
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const sidebarRef = useRef(null);
+
   const toggleSidebar = () => setIsOpen(!isOpen);
+
+  // Close on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   return (
     <>
-      {/* Toggle Button */}
-      <button onClick={toggleSidebar} className="sidebar-toggle-btn">
-        {isOpen ? '✖' : '☰'}
-      </button>
+      {/* ☰ Open Icon - shown only on small screens and when sidebar is closed */}
+      {!isOpen && (
+        <button onClick={toggleSidebar} className="sidebar-toggle-btn">
+          ☰
+        </button>
+      )}
 
-      <aside style={{ ...styles.sidebar, transform: isOpen ? 'translateX(0)' : '', }} className={`sidebar ${isOpen ? 'open' : ''}`}>
+      {/* ✖ Overlay */}
+      {isOpen && <div className="sidebar-overlay" onClick={toggleSidebar}></div>}
+
+      {/* Sidebar */}
+      <aside
+        ref={sidebarRef}
+        className={`sidebar ${isOpen ? 'open' : ''}`}
+        style={{
+          ...styles.sidebar,
+          transform: isOpen ? 'translateX(0)' : '',
+        }}
+      >
+        {/* ✖ Close Icon */}
+        {isOpen && (
+          <button className="sidebar-close-btn" onClick={toggleSidebar}>
+            ✖
+          </button>
+        )}
+
         <ul style={styles.menu}>
           {menuItems.map((item, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              style={index === 0 && isOpen ? { marginTop: '36px' } : {}}
+            >
               <NavLink
                 to={item.to}
-                onClick={() => setIsOpen(false)} // close sidebar on click
-                className={({ isActive }) => isActive ? 'nav-link-active' : ''}
+                onClick={() => setIsOpen(false)}
+                className={({ isActive }) => (isActive ? 'nav-link-active' : '')}
                 style={({ isActive }) => ({
                   ...styles.link,
-                  ...(isActive ? styles.active : {})
+                  ...(isActive ? styles.active : {}),
                 })}
               >
                 <span style={styles.icon}>{item.icon}</span>
@@ -98,10 +134,9 @@ const Sidebar = () => {
         </ul>
       </aside>
 
-      {/* Responsive styles */}
+      {/* CSS */}
       <style>{`
         .sidebar-toggle-btn {
-          display: none;
           position: fixed;
           top: 20px;
           left: 20px;
@@ -112,9 +147,14 @@ const Sidebar = () => {
           font-size: 20px;
           border-radius: 6px;
           z-index: 1001;
+          display: none;
         }
 
         @media (max-width: 700px) {
+          .sidebar-toggle-btn {
+            display: block;
+          }
+
           .sidebar {
             position: fixed;
             top: 0;
@@ -128,13 +168,31 @@ const Sidebar = () => {
             transform: translateX(0);
           }
 
-          .sidebar-toggle-btn {
-            display: block;
-          }
-
           .label {
             display: inline-block;
           }
+        }
+
+        .sidebar-close-btn {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: transparent;
+          border: none;
+          font-size: 20px;
+          cursor: pointer;
+          color: #333;
+          z-index: 1002;
+        }
+
+        .sidebar-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.3);
+          z-index: 999;
         }
 
         .nav-link-active {
@@ -158,6 +216,7 @@ const styles = {
     minHeight: '100vh',
     boxSizing: 'border-box',
     borderRight: '1px solid #e0e0e0',
+    transition: 'transform 0.3s ease-in-out',
   },
   menu: {
     listStyle: 'none',

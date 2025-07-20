@@ -1,0 +1,79 @@
+.completed-courses-chart {
+    width: 100%;
+    max-width: 470px;
+    height: 374px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px 24px 16px 24px;   
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #181a20;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .chart-header .question-icon {
+    font-size: 14px;
+    margin-left: 4px;
+    cursor: pointer;
+  }
+  
+  .chart-header .dropdown {
+    font-weight: 500;
+    font-size: 13px;
+    color: #181a20;
+    margin-left: auto;
+  }
+  
+  .chart-body {
+    flex: 1;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .completed-courses-chart {
+      max-width: 100%;
+      padding: 16px;
+      height: auto;
+    }
+  
+    .chart-body {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .completed-courses-chart {
+      padding: 12px;
+    }
+  
+    .chart-header {
+      font-size: 14px;
+    }
+  
+    .chart-body {
+      height: 260px;
+    }
+  }
+  @media (max-width:575px) {
+    .completed-courses-chart {
+        max-width: 400px;
+    }
+  }
+  @media (max-width:500px) {
+    .completed-courses-chart {
+        max-width: 350px;
+    }
+  }
+  

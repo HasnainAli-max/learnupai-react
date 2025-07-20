@@ -1,6 +1,10 @@
 import React from 'react';
 import './OrgnizationAnalytics.css'
 import FirstChart from '../orgnizationChartPages/FirstChart';
+import SecondChart from '../orgnizationChartPages/SecondChart';
+import ThirdChart from '../orgnizationChartPages/ThirdChart';
+import FourthChart from '../orgnizationChartPages/FourthChart';
+import FifthChart from '../orgnizationChartPages/FifthChart';
 
 const OrgnizationAnalytics = () => {
   return <>
@@ -12,14 +16,22 @@ const OrgnizationAnalytics = () => {
         <div className="card card1">
             <FirstChart/>
         </div>
-        <div className="card card2">Card 2</div>
-        <div className="card card3">Card 3</div>
+        <div className="card card2">
+          <SecondChart/>
+        </div>
+        <div className="card card3">
+          <ThirdChart/>
+        </div>
       </div>
 
       {/* Row 2 */}
       <div className="card-row">
-        <div className="card card4">Card 4</div>
-        <div className="card card5">Card 5</div>
+        <div className="card card4">
+          <FourthChart/>
+        </div>
+        <div className="card card5">
+          <FifthChart/>
+        </div>
       </div>
     </div>
 
