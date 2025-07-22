@@ -3,13 +3,15 @@ import './Home.css';
 
 const Home = () => {
   return (
-    <div className="container">
-      <div className="back">
+    <>
+    <div className="back">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
      <path d="M15 6L9 12L15 18" stroke="#2C2C2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
         Back
       </div>
+    <div className="container">
+      
       <div className="plan">
         <p style={{ letterSpacing: '-5%' }}>
           Create a <span className="span">Learning Plan</span>
@@ -48,6 +50,8 @@ const Home = () => {
         <div className="suggession-3">I want to learn about SEO Marketing</div>
       </div>
     </div>
+    </>
+
   );
 };
 
