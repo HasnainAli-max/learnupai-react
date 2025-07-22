@@ -108,7 +108,10 @@ const FifthChart = () => {
     <div className="tracking-chart-wrapper">
       <div className="chart-header">
         <span className="chart-title">Tracking Time, Frequency & Focus</span>
-        <span className="tooltip-icon">❓</span>
+        <div className="tooltip-wrapper">
+          <span className="tooltip-icon">?</span>
+          <div className="tooltip-text">This is a tooltip</div>
+        </div>
         <span className="dropdown right">Daily/week ›</span>
         <span className="dropdown right">Average Time ›</span>
       </div>

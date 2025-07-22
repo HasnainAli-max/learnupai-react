@@ -9,6 +9,7 @@
     flex-direction: column;
     box-sizing: border-box;
     font-family: sans-serif;
+    /* border: 1px solid rgb(138, 130, 244); */
   }
   
   .chart-header {

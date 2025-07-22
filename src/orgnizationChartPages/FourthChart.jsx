@@ -81,7 +81,10 @@ const FourthChart = () => {
     <div className="completed-courses-chart">
       <div className="chart-header">
         <span className="title">Average completed courses</span>
-        <span className="question-icon">❓</span>
+        <div className="tooltip-wrapper">
+          <span className="tooltip-icon">?</span>
+          <div className="tooltip-text">This is a tooltip</div>
+        </div>
         <span className="dropdown">Daily/week ›</span>
       </div>
       <div className="chart-body">

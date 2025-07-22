@@ -1,0 +1,271 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: end;
+  }
+  
+  .card {
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #829af199;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .card1 {
+    max-width: 470px;
+    height: 194px;
+    flex: 1 1 300px;
+  }
+  
+  .card2 {
+    max-width: 315px;
+    height: 257px;
+    flex: 1 1 250px;
+  }
+  
+  .card3 {
+    max-width: 360px;
+    height: 184px;
+    flex: 1 1 240px;
+  }
+  
+  .card4 {
+    max-width: 510px;
+    width: 100%;
+    height: 400px;
+    flex: 1 1 300px;
+    border: none;
+    box-shadow: none;
+    
+  }
+  
+  .card5 {
+    max-width: 700px;
+    height: 374px;
+    flex: 1 1 400px;
+  }
+  
+  .card6,
+  .card7 {
+    width: 495px;
+    height: 194px;
+    flex: 1 1 495px;
+    border: 1px solid #829af199;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 1249px) {
+    .card3 {
+      margin-top: 0px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .card-row {
+      justify-content: center;
+    }
+  
+    .card {
+      flex: 1 1 100%;
+    }
+  
+    .card4 {
+      max-width: 100%;
+    }
+  
+    .card6,
+    .card7 {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .card {
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    .card6,
+    .card7 {
+      width: 100%;
+    }
+  
+    .card4 {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 440px) {
+    .card3 {
+      max-width: 340px;
+    }
+  }
+  
+
+  .training-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    /* background: #f9f9f9; */
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+  }
+  
+  .training-left {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 18px;
+  }
+  
+  .training-title {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #1a1a1a;
+  }
+  
+  .dropdown-icon {
+    color: #333;
+  }
+  
+  .training-members {
+    font-size: 12px;
+    color: #555;
+  }
+  
+  .member-count {
+    color: #0066ff;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .training-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .expand-text {
+    font-size: 14px;
+  }
+  
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .popup-content {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    width: 780px;
+  }
+  
+  .expanded-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  .expanded-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .search-input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    flex: 1;
+  }
+  
+  .filter-button {
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .expanded-table-data {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .expanded-table-data th,
+  .expanded-table-data td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e4e4e4;
+    text-align: left;
+  }
+  
+  .status {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .status.completed {
+    background: #dcfce7;
+    color: #15803d;
+  }
+  
+  .status.inprogress {
+    background: #fef3c7;
+    color: #b45309;
+  }
+  
+  .status.pastdue {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .close-expanded {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  

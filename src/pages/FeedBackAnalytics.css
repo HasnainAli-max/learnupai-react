@@ -1,0 +1,352 @@
+.training-container {
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .search-filter {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .search-wrapper {
+    position: relative;
+  }
+  
+  .search-input {
+    padding: 8px 16px 8px 36px;
+    border: 1px solid #ccc;
+    border-radius: 9999px;
+    font-size: 14px;
+    width: 220px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #888;
+  }
+  
+  .filter-button,
+  .sort-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  
+  .filter-button .plus {
+    color: #2563eb; /* blue */
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+  
+  .feedback-table {
+    min-width: 800px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .feedback-table thead {
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-weight: 600;
+  }
+  
+  .feedback-table th,
+  .feedback-table td {
+    padding: 12px 24px;
+  }
+  
+  .feedback-table tr.even {
+    background-color: #EEF1FA;
+  }
+  
+  .feedback-table tr.odd {
+    background-color: #ffffff;
+  }
+  
+  .icon-cell {
+    color: #2563eb;
+  }
+  @media (max-width:1030px) {
+    .training-container{
+width: 700px;
+    }
+    .top-controls{
+overflow-x: auto;
+    }
+  }
+  @media (max-width:925px) {
+    .training-container{
+width: 600px;
+    }
+    .top-controls{
+overflow-x: auto;
+    }
+  }
+  @media (max-width:825px) {
+    .training-container{
+     width: 500px;
+    }
+    .top-controls{
+overflow-x: auto;
+    }
+  }
+  @media (max-width:725px) {
+    .training-container{
+     width: 450px;
+    }
+    .top-controls{
+overflow-x: auto;
+    }
+  }
+  @media (max-width:510px) {
+    .training-container{
+     width: 400px;
+     
+    }
+    .top-controls{
+overflow-x: auto;
+    }
+  }
+/* FeedBackAnalytics.css */
+
+.training-container {
+    padding: 1rem;
+    font-family: "Inter", sans-serif;
+    background-color: #fff;
+  }
+  
+  .top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .search-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .search-wrapper {
+    position: relative;
+  }
+  
+  .search-input {
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    background-color: #fff;
+    width: 200px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+  }
+  
+  .filter-button,
+  .sort-button {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    border: 1px solid #d1d5db;
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #1f2937;
+    cursor: pointer;
+  }
+  
+  .plus {
+    color: #3b82f6;
+  }
+  
+  .table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+  }
+  
+  .feedback-table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    text-align: left;
+  }
+  
+  .feedback-table th,
+  .feedback-table td {
+    padding:20px ;
+  }
+  
+  .feedback-table thead {
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-weight: 600;
+  }
+  
+  .feedback-table .even {
+    background-color: #f3f4f6;
+  }
+  
+  .feedback-btn {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    cursor: pointer;
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(31, 41, 55, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 0.75rem;
+    width: 90%;
+    max-width: 1025px;
+    max-height: 546px;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .modal-close {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .modal-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  .modal-body-grid {
+    padding: 1rem;
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+  
+  .modal-grid-controls {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+  
+  .feedback-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: #fff;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .avatar {
+    background-color: #7795ff;
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .user-details {
+    flex: 1;
+    margin-left: 0.5rem;
+  }
+  
+  .rating {
+    color: #3b82f6;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  .feedback-text {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+  }
+  
+  
+  
+  

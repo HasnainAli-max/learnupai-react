@@ -14,18 +14,18 @@ const menuItems = [
     ),
     to: '/orgnization-analytics'
   },
-  {
-    label: 'Team Analytics',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="9" cy="7" r="4" />
-        <circle cx="17" cy="7" r="3" />
-        <path d="M2 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2" />
-        <path d="M17 21v-2a4 4 0 0 0-2-3.46" />
-      </svg>
-    ),
-    to: '/team-analytics'
-  },
+  // {
+  //   label: 'Team Analytics',
+  //   icon: (
+  //     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  //       <circle cx="9" cy="7" r="4" />
+  //       <circle cx="17" cy="7" r="3" />
+  //       <path d="M2 21v-2a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v2" />
+  //       <path d="M17 21v-2a4 4 0 0 0-2-3.46" />
+  //     </svg>
+  //   ),
+  //   to: '/team-analytics'
+  // },
   {
     label: 'Employee Analytics',
     icon: (

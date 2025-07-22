@@ -1,0 +1,97 @@
+.status-card {
+    width: 470px;
+    height: 194px;
+    /* border: 1px solid #dcdcdc; */
+    border-radius: 10px;
+    /* padding: 12px 16px; */
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    /* box-shadow: 0 0 0 1px #e5e7eb; */
+  }
+  
+  .status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+  }
+  
+  .avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #7f9cf5;
+    border-radius: 50%;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .name-status {
+    flex-grow: 1;
+    display: flex;
+    /* flex-direction: column; */
+    gap: 60px;
+  }
+  
+  .name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+  }
+  
+  .badge {
+    display: flex;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 999px;
+    width: fit-content; 
+  }
+  
+  .badge.green {
+    background-color: #c6f6d5;
+    color: #42BA0A;
+  }
+  
+  .badge.orange {
+    background-color: #fef3c7;
+    color: #D77D00;
+  }
+  
+  .badge.red {
+    background-color: #fee2e2;
+    color: #D72B00;
+  }
+  
+  .score {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    min-width: 40px;
+    text-align: right;
+  }
+  @media (max-width:550px) {
+    .status-card{
+    width: 400px;
+    }
+    .name-status{
+        flex-direction: column;
+        gap: 0px;
+    }
+  }
+  @media (max-width:550px) {
+    .status-card{
+    width: 390px;
+    }
+    
+  }
+  

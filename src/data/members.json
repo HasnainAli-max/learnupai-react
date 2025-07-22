@@ -1,0 +1,208 @@
+[
+    {
+      "id": 1,
+      "name": "Chis Emanuel Andrei",
+      "pastLPs": 2,
+      "courses": [
+        {
+          "title": "AB Testing Method",
+          "dueDate": "02.21.2025",
+          "completionDate": "02.10.2025",
+          "status": "Completed",
+          "score": "9",
+          "feedback": "YES",
+          "hoursSpent": "5.2"
+        },
+        {
+          "title": "Notion - Basic Level Training",
+          "dueDate": "02.21.2025",
+          "completionDate": "-",
+          "status": "In progress",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "2.1"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sophie Miller",
+      "pastLPs": 1,
+      "courses": [
+        {
+          "title": "Time Management Basics",
+          "dueDate": "02.25.2025",
+          "completionDate": "02.24.2025",
+          "status": "Completed",
+          "score": "10",
+          "feedback": "YES",
+          "hoursSpent": "3.0"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "David Kim",
+      "pastLPs": 0,
+      "courses": [
+        {
+          "title": "Remote Collaboration Tools",
+          "dueDate": "02.20.2025",
+          "completionDate": "-",
+          "status": "In progress",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "1.5"
+        },
+        {
+          "title": "Intro to SEO",
+          "dueDate": "02.19.2025",
+          "completionDate": "02.18.2025",
+          "status": "Completed",
+          "score": "8",
+          "feedback": "YES",
+          "hoursSpent": "2.2"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lina Zhang",
+      "pastLPs": 3,
+      "courses": [
+        {
+          "title": "Advanced Excel",
+          "dueDate": "02.15.2025",
+          "completionDate": "02.16.2025",
+          "status": "Past due date",
+          "score": "7",
+          "feedback": "YES",
+          "hoursSpent": "6.5"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Markus Peterson",
+      "pastLPs": 1,
+      "courses": [
+        {
+          "title": "Conflict Resolution",
+          "dueDate": "02.22.2025",
+          "completionDate": "02.22.2025",
+          "status": "Completed",
+          "score": "9",
+          "feedback": "YES",
+          "hoursSpent": "4.1"
+        },
+        {
+          "title": "Email Etiquette",
+          "dueDate": "02.23.2025",
+          "completionDate": "-",
+          "status": "In progress",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "1.2"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Fatima Noor",
+      "pastLPs": 2,
+      "courses": [
+        {
+          "title": "Workplace Diversity",
+          "dueDate": "02.28.2025",
+          "completionDate": "-",
+          "status": "In progress",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "0.8"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Joshua Lee",
+      "pastLPs": 4,
+      "courses": [
+        {
+          "title": "Leadership 101",
+          "dueDate": "02.17.2025",
+          "completionDate": "02.16.2025",
+          "status": "Completed",
+          "score": "8",
+          "feedback": "YES",
+          "hoursSpent": "6.0"
+        },
+        {
+          "title": "Public Speaking",
+          "dueDate": "02.20.2025",
+          "completionDate": "02.19.2025",
+          "status": "Completed",
+          "score": "7",
+          "feedback": "YES",
+          "hoursSpent": "5.0"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Amira Hassan",
+      "pastLPs": 0,
+      "courses": [
+        {
+          "title": "Productivity Hacks",
+          "dueDate": "02.15.2025",
+          "completionDate": "-",
+          "status": "Past due date",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "0.5"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Leo Martins",
+      "pastLPs": 2,
+      "courses": [
+        {
+          "title": "UX Fundamentals",
+          "dueDate": "02.21.2025",
+          "completionDate": "02.18.2025",
+          "status": "Completed",
+          "score": "10",
+          "feedback": "YES",
+          "hoursSpent": "3.7"
+        },
+        {
+          "title": "Agile Basics",
+          "dueDate": "02.22.2025",
+          "completionDate": "-",
+          "status": "In progress",
+          "score": "-",
+          "feedback": "NO",
+          "hoursSpent": "1.4"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Emily Rodriguez",
+      "pastLPs": 5,
+      "courses": [
+        {
+          "title": "Advanced Analytics",
+          "dueDate": "02.18.2025",
+          "completionDate": "02.17.2025",
+          "status": "Completed",
+          "score": "9",
+          "feedback": "YES",
+          "hoursSpent": "6.8"
+        }
+      ]
+    }
+  ]
+  

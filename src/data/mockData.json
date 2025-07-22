@@ -1,0 +1,35 @@
+{
+    "users": [
+      {
+        "userId": "u001",
+        "fullName": "Ahmad Raza",
+        "coursesEnrolled": 5,
+        "currentCourses": 2,
+        "lastActiveDate": "2025-07-20",
+        "totalHoursSpent": 14,
+        "averageQuizScore": 88,
+        "pastDueLPs": 1
+      },
+      {
+        "userId": "u002",
+        "fullName": "Sana Tariq",
+        "coursesEnrolled": 4,
+        "currentCourses": 1,
+        "lastActiveDate": "2025-07-18",
+        "totalHoursSpent": 9,
+        "averageQuizScore": 91,
+        "pastDueLPs": 0
+      },
+      {
+        "userId": "u003",
+        "fullName": "Bilal Khan",
+        "coursesEnrolled": 6,
+        "currentCourses": 3,
+        "lastActiveDate": "2025-07-19",
+        "totalHoursSpent": 11,
+        "averageQuizScore": 76,
+        "pastDueLPs": 2
+      }
+    ]
+  }
+  

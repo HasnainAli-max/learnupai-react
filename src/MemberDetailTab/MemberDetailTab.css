@@ -1,0 +1,61 @@
+.detail-tab {
+    margin-top: 20px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e4e4e7;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+  }
+  
+  /* Table */
+  .detail-tab .member-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #18181b;
+    min-width: 900px;
+  }
+  
+  .detail-tab .member-table thead {
+    background-color: #f9fafb;
+    font-weight: 600;
+    color: #52525b;
+  }
+  
+  .detail-tab .member-table th,
+  .detail-tab .member-table td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e4e4e7;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  
+  .detail-tab .member-table tbody tr:nth-child(even) {
+    background-color: #f5f6ff;
+  }
+  
+  /* Course Status Badge */
+  .detail-tab .member-table td span {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: 1;
+    color: white;
+  }
+  
+  /* Scrollbar Styling */
+  .detail-tab::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .detail-tab::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+  

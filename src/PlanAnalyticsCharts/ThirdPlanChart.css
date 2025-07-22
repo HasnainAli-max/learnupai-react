@@ -1,0 +1,116 @@
+.team-completion-card {
+    width: 390px;
+    height: 184px;
+    /* background: #f9f9fb; */
+    border-radius: 12px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+  }
+  
+  .tooltip {
+    background: #3a3a3a;
+    color: #ffffff;
+    font-size: 13px;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    cursor: pointer;
+  }
+  
+  .rate-label {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .progress-bar-wrapper {
+    margin-top: 10px;
+    height: 24px;
+    background-color: #f1f1f1;
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #7f9cf5;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    color: #111;
+  }
+  
+  .progress-text {
+    font-size: 13px;
+    color: #111;
+  }
+  
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #444;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .dot.blue {
+    background-color: #7f9cf5;
+  }
+  
+  .dot.gray {
+    background-color: #e5e7eb;
+  }
+  
+  @media (max-width: 450px) {
+    .team-completion-card {
+      width: 100%;
+      height: auto;
+    }
+  
+    .progress-text {
+      font-size: 12px;
+    }
+  
+    .legend {
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 10px;
+    }
+  }
+  

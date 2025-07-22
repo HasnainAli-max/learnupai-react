@@ -13,6 +13,7 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    align-items: end;
   }
   
   .card {
@@ -43,7 +44,7 @@
     max-width: 360px;
     height: 184px;
     flex: 1 1 240px;
-    margin-top: 70px;
+    /* margin-top: 70px; */
   }
   
   /* Row 2 Cards */

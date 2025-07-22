@@ -26,7 +26,7 @@ const OrgnizationAnalytics = () => {
 
       {/* Row 2 */}
       <div className="card-row">
-        <div className="card card4">
+        <div className="card card4" style={{border:'1px solid rgb(156, 174, 236)'}}>
           <FourthChart/>
         </div>
         <div className="card card5">

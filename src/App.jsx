@@ -7,7 +7,6 @@ import EmployAnalytics from './pages/EmployAnalytics';
 import PlanAnalytics from './pages/PlanAnalytics';
 import FeedBackAnalytics from './pages/FeedBackAnalytics';
 import ReportList from './pages/ReportList';
-import TeamAnalytics from './pages/TeamAnalytics';
 
 const App = () => {
   return (
@@ -20,7 +19,7 @@ const App = () => {
           <Route path="learning-plan" element={<PlanAnalytics />} />
           <Route path="feedback" element={<FeedBackAnalytics />} />
           <Route path="reports" element={<ReportList />} />
-          <Route path="team-analytics" element={<TeamAnalytics />} />
+          {/* <Route path="team-analytics" element={<TeamAnalytics />} /> */}
         </Route>
       </Routes>
     // </Router>

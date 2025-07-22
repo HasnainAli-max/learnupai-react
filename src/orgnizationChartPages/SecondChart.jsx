@@ -43,7 +43,11 @@ const SecondChart = () => {
   return (
     <div className="semi-doughnut-container">
       <div className="chart-title">
-        Average quiz Pass/Fail Rate <span className="tooltip-icon">❓</span>
+        Average quiz Pass/Fail Rate 
+        <div className="tooltip-wrapper">
+          <span className="tooltip-icon">?</span>
+          <div className="tooltip-text">This is a tooltip</div>
+        </div>
       </div>
       <div className="chart-section">
         <Doughnut data={data} options={options} />

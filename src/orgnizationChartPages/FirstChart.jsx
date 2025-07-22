@@ -98,7 +98,11 @@ const FirstChart = () => {
   return (
     <div className="team-chart-container">
       <div className="team-chart-title">
-        Team members statistics <span className="tooltip-icon">❓</span>
+        Team members statistics 
+        <div className="tooltip-wrapper">
+          <span className="tooltip-icon">?</span>
+          <div className="tooltip-text">This is a tooltip</div>
+        </div>
       </div>
       <div className="chart-wrapper">
         <Bar data={data} options={options} plugins={[textPlugin]} />
