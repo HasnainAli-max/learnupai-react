@@ -7,29 +7,25 @@ const ReportList = () => {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const [showScheduleModal, setShowScheduleModal] = useState(false);
   const [selectedScheduleRow, setSelectedScheduleRow] = useState(null);
+  const [reports, setReports] = useState([]);
   const filterBtnRef = useRef();
   const filterDropdownRef = useRef();
 
-  const rows = [
-    { name: 'Report Name here', date: '06.15.2025', audience: 'Sales Team', metrics: '85% Complete\n70% Pass rate' },
-    { name: 'Quarterly Review', date: '05.10.2025', audience: 'Marketing', metrics: '90% Complete\n80% Pass rate' },
-    { name: 'Annual Summary', date: '01.01.2025', audience: 'Executives', metrics: '100% Complete\n95% Pass rate' },
-    { name: 'Weekly Update', date: '06.01.2025', audience: 'Sales Team', metrics: '75% Complete\n60% Pass rate' },
-    { name: 'Performance Report', date: '04.20.2025', audience: 'HR', metrics: '88% Complete\n85% Pass rate' },
-    { name: 'Engagement Stats', date: '03.15.2025', audience: 'Marketing', metrics: '92% Complete\n78% Pass rate' },
-    { name: 'Compliance', date: '02.28.2025', audience: 'Executives', metrics: '99% Complete\n99% Pass rate' },
-    { name: 'Monthly Recap', date: '05.30.2025', audience: 'HR', metrics: '80% Complete\n70% Pass rate' },
-    { name: 'Pipeline Overview', date: '06.10.2025', audience: 'Sales Team', metrics: '85% Complete\n75% Pass rate' }
-  ];
+  useEffect(() => {
+    fetch("http://localhost:5000/api/reports")
+      .then((res) => res.json())
+      .then((data) => setReports(data))
+      .catch((err) => console.error("Fetch error:", err));
+  }, []);
 
-  const filteredRows = rows.filter(row => {
+  const filteredRows = reports.filter((row) => {
     const matchAudience = filterAudience ? row.audience === filterAudience : true;
     const term = searchTerm.trim().toLowerCase();
     const matchSearch = term
-      ? row.name.toLowerCase().includes(term) ||
-        row.date.toLowerCase().includes(term) ||
+      ? row.reportName.toLowerCase().includes(term) ||
+        new Date(row.dateGenerated).toLocaleDateString().toLowerCase().includes(term) ||
         row.audience.toLowerCase().includes(term) ||
-        row.metrics.toLowerCase().includes(term)
+        row.keyMetricsSummary.toLowerCase().includes(term)
       : true;
     return matchAudience && matchSearch;
   });
@@ -70,12 +66,6 @@ const ReportList = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* <span className="search-icon">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="9" cy="9" r="7" stroke="#888" strokeWidth="2" />
-                <line x1="14.5" y1="14.5" x2="18" y2="18" stroke="#888" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </span> */}
           </div>
           <div className="filter-wrapper" ref={filterBtnRef}>
             <button onClick={() => setShowFilterDropdown(!showFilterDropdown)}>
@@ -91,6 +81,8 @@ const ReportList = () => {
                   <option value="Marketing">Marketing</option>
                   <option value="Executives">Executives</option>
                   <option value="HR">HR</option>
+                  <option value="HR Department">HR Department</option>
+                  <option value="Team Leads">Team Leads</option>
                 </select>
               </div>
             )}
@@ -117,10 +109,10 @@ const ReportList = () => {
             {filteredRows.map((row, i) => (
               <tr key={i}>
                 <td><input type="checkbox" /></td>
-                <td>{row.name}</td>
-                <td>{row.date}</td>
+                <td>{row.reportName}</td>
+                <td>{new Date(row.dateGenerated).toLocaleDateString()}</td>
                 <td>{row.audience}</td>
-                <td className="metrics" dangerouslySetInnerHTML={{ __html: row.metrics.replace(/\n/g, "<br>") }} />
+                <td className="metrics" dangerouslySetInnerHTML={{ __html: row.keyMetricsSummary.replace(/\n/g, "<br>") }} />
                 <td>
                   <button className="export-btn" onClick={() => {
                     setSelectedScheduleRow(i);
@@ -135,6 +127,7 @@ const ReportList = () => {
         </table>
       </div>
 
+      {/* Schedule Modal Code Stays Same */}
       {showScheduleModal && (
         <div className="schedule-modal-overlay">
           <div className="schedule-modal">
