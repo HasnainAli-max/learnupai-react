@@ -41,16 +41,16 @@
   }
   
   .percentage.pass {
-    top: -5%;
-    left: 20%;
-    transform: rotate(-28deg);
+    top:5%;
+    left: 10%;
+    transform: rotate(-38deg);
 
   }
   
   .percentage.fail {
-    top: 10%;
+    top: 5%;
     right: 10%;
-    transform: rotate(40deg);
+    transform: rotate(30deg);
   }
   
   .legend {

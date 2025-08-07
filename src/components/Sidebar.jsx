@@ -137,7 +137,7 @@ const Sidebar = () => {
       {/* CSS */}
       <style>{`
         .sidebar-toggle-btn {
-          position: fixed;
+          position: absolute;
           top: 20px;
           left: 20px;
           background-color: #0047ff;
@@ -148,6 +148,8 @@ const Sidebar = () => {
           border-radius: 6px;
           z-index: 1001;
           display: none;
+          height: 45px;
+          top: 10px;
         }
 
         @media (max-width: 700px) {

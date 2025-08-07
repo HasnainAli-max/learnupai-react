@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import './Button.css';
 
-const Button = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [format, setFormat] = useState('CSV');
-
+const Button = ({ onCSVClick, onPDFClick, showPopup, setShowPopup, format, setFormat }) => {
   const togglePopup = () => setShowPopup(!showPopup);
 
   const closePopup = () => setShowPopup(false);
 
   const refreshPage = () => window.location.reload();
 
-  const handleFormatSelect = (selected) => setFormat(selected);
+  const handleFormatSelect = (selected) => {
+    setFormat(selected);
+  };
+
+  const handleExport = () => {
+    if (format === 'CSV') {
+      onCSVClick();
+    } else if (format === 'PDF') {
+      onPDFClick();
+    }
+  };
 
   return (
     <div className="button-container">
@@ -81,7 +88,9 @@ const Button = () => {
               PDF
             </button>
           </div>
-          <button className="popup-export">Export</button>
+          <button className="popup-export" onClick={handleExport}>
+            Export
+          </button>
         </div>
       )}
     </div>

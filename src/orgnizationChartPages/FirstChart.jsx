@@ -13,7 +13,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 const FirstChart = () => {
   const [barThickness, setBarThickness] = useState(35);
+  const [chartData, setChartData] = useState({ started: 0, completed: 0 });
 
+  // Handle responsiveness
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -31,6 +33,37 @@ const FirstChart = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // ✅ Fetch data from team-stats API
+  useEffect(() => {
+    const fetchTeamStats = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      try {
+        const response = await fetch('http://localhost:5000/api/users/team-stats', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setChartData({
+            started: result.started || 0,
+            completed: result.completed || 0,
+          });
+        } else {
+          console.error('Failed to fetch team stats');
+        }
+      } catch (err) {
+        console.error('Error fetching team stats:', err);
+      }
+    };
+
+    fetchTeamStats();
+  }, []);
+
   const data = {
     labels: [
       '% of team members who have started a course',
@@ -39,7 +72,7 @@ const FirstChart = () => {
     datasets: [
       {
         label: '',
-        data: [82, 100],
+        data: [chartData.started, chartData.completed],
         backgroundColor: ['#7da6ff', '#0047ff'],
         borderRadius: 50,
         barThickness: barThickness,
@@ -86,7 +119,13 @@ const FirstChart = () => {
       },
       y: {
         ticks: { display: false },
-        grid: { display: false, drawBorder: false },
+        grid: {
+          display: false,
+          drawBorder: false,  // ✅ hides the grid border
+        },
+        border: {
+          display: false,     // ✅ disables the left axis line
+        },
       },
     },
     plugins: {

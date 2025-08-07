@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import './EmployAnalytics.css';
 import MemberDetailTab from '../MemberDetailTab/MemberDetailTab';
 
@@ -11,28 +13,17 @@ const EmployAnalytics = () => {
   const [sortOption, setSortOption] = useState('nameAsc');
   const [showSort, setShowSort] = useState(false);
   const [data, setData] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [format, setFormat] = useState('CSV');
 
   const filterRef = useRef(null);
   const sortRef = useRef(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/user-stats')
+    fetch('http://localhost:5000/api/table/employee')
       .then(res => res.json())
       .then(setData)
       .catch(err => console.error('Error fetching employee data:', err));
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (filterRef.current && !filterRef.current.contains(event.target)) {
-        setShowFilter(false);
-      }
-      if (sortRef.current && !sortRef.current.contains(event.target)) {
-        setShowSort(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const filteredData = data
@@ -50,19 +41,13 @@ const EmployAnalytics = () => {
     return 0;
   });
 
-  const handleOpenTab = (id) => {
-    if (!openedDetails.includes(id)) {
-      setOpenedDetails([...openedDetails, id]);
-    }
-    setActiveTab(id);
-  };
-
-  const handleCloseTab = (id, e) => {
-    e.stopPropagation();
-    const updatedTabs = openedDetails.filter(openedId => openedId !== id);
-    setOpenedDetails(updatedTabs);
-    if (activeTab === id) setActiveTab('all');
-  };
+  // ✅ PAGINATION STATE & LOGIC
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 10;
+  const totalPages = Math.ceil(sortedData.length / usersPerPage);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const paginatedData = sortedData.slice(indexOfFirstUser, indexOfLastUser);
 
   const getCurrentCourses = (courses = []) => courses?.length || 0;
   const getPercentageCompleted = (percent) => `${Math.round(percent)}%`;
@@ -70,9 +55,79 @@ const EmployAnalytics = () => {
   const getAverageQuizScore = (s) => isNaN(s) ? '-' : `${Math.round(s)}/10`;
   const getLastActiveDate = (date) => date ? new Date(date).toLocaleDateString() : '-';
 
+  const togglePopup = () => setShowPopup(!showPopup);
+  const closePopup = () => setShowPopup(false);
+  const refreshPage = () => window.location.reload();
+  const handleFormatSelect = (selected) => setFormat(selected);
+
+  const handleExport = () => {
+    const header = ['Full name', 'Courses enrolled', '% Completed', 'Current courses', 'Last active date', 'Total hours spent', 'Average quiz score', 'Past LP’s'];
+    const rows = sortedData.map(row => [
+      row.fullName,
+      row.coursesEnrolled?.length || 0,
+      getPercentageCompleted(row.percentCompleted),
+      getCurrentCourses(row.currentCourses),
+      getLastActiveDate(row.lastActiveDate),
+      getTotalHours(row.totalHoursSpent),
+      getAverageQuizScore(row.averageQuizScore),
+      row.pastLPs?.join(', ')
+    ]);
+
+    if (format === 'CSV') {
+      let csvContent = 'data:text/csv;charset=utf-8,';
+      csvContent += header.join(',') + '\n';
+      rows.forEach(row => {
+        csvContent += row.join(',') + '\n';
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'employee_data.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else if (format === 'PDF') {
+      const doc = new jsPDF();
+      autoTable(doc, {
+        head: [header],
+        body: rows,
+      });
+      doc.save('employee_data.pdf');
+    }
+  };
+
   return (
     <>
       <div style={{ width: '100%' }}>
+        <div style={{ marginTop: '10px', marginLeft: '10px' }}>
+          <div className="button-container">
+            <button className="export-button" onClick={togglePopup}>
+              Export options
+              <svg className="down-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button className="refresh-button" onClick={refreshPage}>
+              <svg className="refresh-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4v6h6M20 20v-6h-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M4 10a8 8 0 0113.657-5.657M20 14a8 8 0 01-13.657 5.657" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Refresh page
+            </button>
+            {showPopup && (
+              <div className="popup">
+                <button className="close-btn" onClick={closePopup}>×</button>
+                <div className="popup-title">Select format:</div>
+                <div className="format-options">
+                  <button className={`format-button ${format === 'CSV' ? 'selected' : ''}`} onClick={() => handleFormatSelect('CSV')}>CSV</button>
+                  <button className={`format-button ${format === 'PDF' ? 'selected' : ''}`} onClick={() => handleFormatSelect('PDF')}>PDF</button>
+                </div>
+                <button className="popup-export" onClick={handleExport}>Export</button>
+              </div>
+            )}
+          </div>
+        </div>
         <h1 style={{ fontWeight: '700', fontSize: '18px', marginLeft: '10px' }}>
           Individual Progress Tracking
           <div className="tooltip-wrapper">
@@ -81,100 +136,61 @@ const EmployAnalytics = () => {
           </div>
         </h1>
       </div>
+
       <div className="member-table-wrapper">
-        {/* Header Tabs */}
-        <div className="member-table-header">
-          <div className="tabs">
-            <div className={`tab ${activeTab === 'all' ? 'active' : ''}`} onClick={() => setActiveTab('all')}>
-              <svg width="30" height="30" viewBox="0 0 64 64" fill="none"><rect width="64" height="64" rx="12" fill="#F5F6FF" /><rect x="16" y="20" width="20" height="4" rx="2" fill="#0047FF" /><rect x="16" y="30" width="20" height="4" rx="2" fill="#0047FF" /><rect x="16" y="40" width="32" height="4" rx="2" fill="#0047FF" /><circle cx="42" cy="28" r="8" fill="#0047FF" /></svg>
-              All Members
-            </div>
-            {openedDetails.map(id => {
-              const member = data.find(m => m._id === id);
-              return (
-                <div key={id} className={`tab ${activeTab === id ? 'active' : ''}`} onClick={() => setActiveTab(id)}>
-                  <span className="avatar">N</span> {member?.fullName}
-                  <button className="tab-close-btn" onClick={(e) => handleCloseTab(id, e)}>×</button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Filters and Sort */}
-        <div className="controls">
-          <div className="search-wrapper">
-            <input type="text" placeholder="Search" className="search-input" value={search} onChange={(e) => setSearch(e.target.value)} />
-          </div>
-          <div className="filter-dropdown-wrapper" ref={filterRef}>
-            <button className="filter-btn" onClick={() => setShowFilter(!showFilter)}>Add Filters +</button>
-            {showFilter && (
-              <div className="filter-dropdown">
-                <label>Course Status:</label>
-                <select className="filter-select" value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-                  <option>All</option>
-                  <option>Completed</option>
-                  <option>In progress</option>
-                  <option>Past due date</option>
-                </select>
-              </div>
-            )}
-          </div>
-          <div className="filter-dropdown-wrapper" ref={sortRef}>
-            <button className="sort-btn" onClick={() => setShowSort(!showSort)}>Sort</button>
-            {showSort && (
-              <div className="filter-dropdown">
-                <label>Sort by:</label>
-                <select className="filter-select" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-                  <option value="nameAsc">Name (A-Z)</option>
-                  <option value="nameDesc">Name (Z-A)</option>
-                  <option value="lastActive">Last Active (Newest)</option>
-                  <option value="coursesCount">Courses Count (High to Low)</option>
-                </select>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Table View */}
-        {activeTab === 'all' ? (
-          <div className="table-scroll-container">
-            <div className="table-responsive">
-              <table className="member-table">
-                <thead>
-                  <tr>
-                    <th>Full name</th>
-                    <th>Courses enrolled</th>
-                    <th>% Completed</th>
-                    <th>Current courses</th>
-                    <th>Last active date</th>
-                    <th>Total hours spent</th>
-                    <th>Average quiz score</th>
-                    <th>Past LP’s</th>
-                    <th></th>
+        <div className="table-scroll-container">
+          <div className="table-responsive">
+            <table className="member-table">
+              <thead>
+                <tr>
+                  <th>Full name</th>
+                  <th>Courses enrolled</th>
+                  <th>% Completed</th>
+                  <th>Current courses</th>
+                  <th>Last active date</th>
+                  <th>Total hours spent</th>
+                  <th>Average quiz score</th>
+                  <th>Past LP’s</th>
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedData.map((row, index) => (
+                  <tr key={index}>
+                    <td>{row.fullName}</td>
+                    <td>{row.coursesEnrolled} courses</td>
+                    <td>{getPercentageCompleted(row.completionPercentage)}</td>
+                    <td>{getCurrentCourses(row.currentCourses)}</td>
+                    <td>{getLastActiveDate(row.lastActiveDate)}</td>
+                    <td>{getTotalHours(row.totalHoursSpent)}</td>
+                    <td>{getAverageQuizScore(row.averageQuizScore)}</td>
+                    <td>{row.pastLPs?.join(', ')}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {sortedData.map((row) => (
-                    <tr key={row._id}>
-                      <td><span className="avatar">N</span>{row.fullName}</td>
-                      <td>{row.coursesEnrolled?.length || 0} courses</td>
-                      <td>{getPercentageCompleted(row.percentCompleted)}</td>
-                      <td>{getCurrentCourses(row.currentCourses)}</td>
-                      <td>{getLastActiveDate(row.lastActiveDate)}</td>
-                      <td>{getTotalHours(row.totalHoursSpent)}</td>
-                      <td>{getAverageQuizScore(row.averageQuizScore)}</td>
-                      <td>{row.pastLPs?.join(', ')}</td>
-                      <td><button className="plus-btn" onClick={() => handleOpenTab(row._id)}>+</button></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ) : (
-          <MemberDetailTab member={data.find(m => m._id === activeTab)} />
-        )}
+        </div>
+      </div>
+
+      {/* ✅ Pagination Controls */}
+      <div className="pagination-controls" style={{ textAlign: "center", marginTop: "10px" }}>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          style={{ marginRight: "10px" }}
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          style={{ marginLeft: "10px" }}
+        >
+          Next
+        </button>
       </div>
     </>
   );

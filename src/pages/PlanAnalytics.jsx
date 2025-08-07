@@ -46,7 +46,6 @@ const ExpandedTable = ({ onClose }) => {
           </div>
           <div className="expanded-controls">
             <input type="text" className="search-input" placeholder="Search" value={searchTerm} onChange={handleSearch} />
-            <button className="filter-button">Add Filters +</button>
           </div>
           <table className="expanded-table-data">
             <thead>
@@ -89,9 +88,9 @@ const PlanAnalytics = () => {
             Learning Plan Specific Training
             <ChevronDown size={16} className="dropdown-icon" />
           </div>
-          <div className="training-members">
-            Members: <span className="member-count">100</span>
-          </div>
+          {/* <div className="training-members">
+            Members: <span className="member-count">...</span>
+          </div> */}
         </div>
         <div className="training-right" onClick={() => setShowExpanded(true)}>
           <span className="expand-text">Expand</span>

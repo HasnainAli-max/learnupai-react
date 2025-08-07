@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   LineElement,
@@ -14,12 +14,42 @@ import './FifthChart.css';
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Tooltip, Legend);
 
 const FifthChart = () => {
-  const [viewMode, setViewMode] = useState('learner'); // 'learner' | 'team' | 'both'
+  const [viewMode, setViewMode] = useState('learner');
+  const [labels, setLabels] = useState([]);
+  const [learnerData, setLearnerData] = useState([]);
+  const [teamData, setTeamData] = useState([]);
 
-  const baseLabels = ['Mon', 'Thu', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  useEffect(() => {
+    const fetchChartData = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const res = await fetch('http://localhost:5000/api/users/time-frequency-focus', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  const learnerData = [15, 15,30, 10, 5, 25, 20];
-  const teamData = [10, 20, 20, 15, 18, 10, 9];
+        const result = await res.json();
+        console.log('✅ API Result:', result);
+
+        if (res.ok && result) {
+          const days = Object.keys(result);
+          const learner = days.map(day => result[day]?.averageShowPerLearner ?? 0);
+          const team = days.map(day => result[day]?.averageShowPerTeam ?? 0);
+
+          setLabels(days);
+          setLearnerData(learner);
+          setTeamData(team);
+        } else {
+          console.error('Invalid API response:', result);
+        }
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    };
+
+    fetchChartData();
+  }, []);
 
   const datasets = [];
 
@@ -27,8 +57,8 @@ const FifthChart = () => {
     datasets.push({
       label: 'Average time spent /learner',
       data: learnerData,
-      borderColor: '#7795FF',
-      backgroundColor: '#7795FF',
+      borderColor: 'rgba(0, 47, 255, 1)',
+      backgroundColor: 'rgba(0, 47, 255, 1)',
       tension: 0.3,
       pointRadius: 6,
       pointHoverRadius: 6,
@@ -40,8 +70,8 @@ const FifthChart = () => {
     datasets.push({
       label: 'Average time spent /team',
       data: teamData,
-      borderColor: '#7795FF',
-      backgroundColor: '#7795FF',
+      borderColor: 'rgba(0, 74, 255, 0.4)',
+      backgroundColor: 'rgba(0, 74, 255, 0.4)',
       tension: 0.3,
       pointRadius: 6,
       pointHoverRadius: 6,
@@ -50,11 +80,11 @@ const FifthChart = () => {
   }
 
   const chartData = {
-    labels: baseLabels,
+    labels,
     datasets,
   };
 
-  const chartOptions = {
+  const options = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -62,8 +92,9 @@ const FifthChart = () => {
         min: 0,
         max: 35,
         ticks: {
+          callback: (value) => `${value}h`,
           color: '#181A20',
-          font: { size: 12 },
+          font: { size: 13 },
         },
         title: {
           display: true,
@@ -92,10 +123,10 @@ const FifthChart = () => {
         labels: {
           usePointStyle: true,
           pointStyle: 'circle',
-          boxWidth: 6,
+          boxWidth: 20, // Smaller dot
+          padding: 18, // Space between dot and label text
           color: '#181A20',
           font: { size: 13 },
-          padding: 20,
         },
       },
       tooltip: {
@@ -108,7 +139,7 @@ const FifthChart = () => {
     <div className="tracking-chart-wrapper">
       <div className="chart-header">
         <span className="chart-title">Tracking Time, Frequency & Focus</span>
-        <div className="tooltip-wrapper">
+        <div className="tooltip-wrapper" style={{ marginLeft: '-70px', marginBottom: '7px' }}>
           <span className="tooltip-icon">?</span>
           <div className="tooltip-text">This is a tooltip</div>
         </div>
@@ -117,37 +148,37 @@ const FifthChart = () => {
       </div>
 
       <div className="chart-body">
-      <div className="checkbox-wrapper">
-        <label className={`checkbox-option ${viewMode === 'learner' ? 'active' : ''}`}>
-          <input
-            type="checkbox"
-            checked={viewMode === 'learner'}
-            onChange={() => setViewMode('learner')}
-          />
-          Show per learner
-        </label>
-        <label className={`checkbox-option ${viewMode === 'team' ? 'active' : ''}`}>
-          <input
-            type="checkbox"
-            checked={viewMode === 'team'}
-            onChange={() => setViewMode('team')}
-          />
-          Show per total team
-        </label>
-        <label className={`checkbox-option ${viewMode === 'both' ? 'active' : ''}`}>
-          <input
-            type="checkbox"
-            checked={viewMode === 'both'}
-            onChange={() => setViewMode('both')}
-          />
-          Show both
-        </label>
+        <div className="checkbox-wrapper">
+          <label className={`checkbox-option ${viewMode === 'learner' ? 'active' : ''}`}>
+            <input
+              type="radio"
+              name="viewMode"
+              checked={viewMode === 'learner'}
+              onChange={() => setViewMode('learner')}
+            />
+            Show per learner
+          </label>
+          <label className={`checkbox-option ${viewMode === 'team' ? 'active' : ''}`}>
+            <input
+              type="radio"
+              name="viewMode"
+              checked={viewMode === 'team'}
+              onChange={() => setViewMode('team')}
+            />
+            Show per total team
+          </label>
+          <label className={`checkbox-option ${viewMode === 'both' ? 'active' : ''}`}>
+            <input
+              type="radio"
+              name="viewMode"
+              checked={viewMode === 'both'}
+              onChange={() => setViewMode('both')}
+            />
+            Show both
+          </label>
+        </div>
+        <Line data={chartData} options={options} />
       </div>
-        <Line data={chartData} options={chartOptions} />
-        
-      </div>
-
-      
     </div>
   );
 };

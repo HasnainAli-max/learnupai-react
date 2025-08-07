@@ -1,5 +1,6 @@
 .report-list-wrapper {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 40px;
     /* width: 1200px; */
   }
   
@@ -140,6 +141,7 @@
   
   .table-wrapper {
     width: 100%;
+    height: 68vh;
     border-radius: 8px;
     border: 1px solid #ddd;
   }
@@ -148,6 +150,7 @@
     width: 100%;
     border-collapse: collapse;
     min-width: 768px;
+    overflow-y: scroll;
   }
   
   thead {
@@ -362,4 +365,13 @@
         width: 100%;
     }
   }
+
+
+
+
+
+
+
+
+  
   
